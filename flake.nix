@@ -160,12 +160,12 @@
         }
       );
 
-      nixosModules.default = { config, pkgs, ... }: {
+      nixosModules.default = { config, lib, pkgs, ... }: {
         options.programs.hyprfloat = {
-          enable = pkgs.lib.mkEnableOption "Enable hyprfloat";
+          enable = lib.mkEnableOption "Enable hyprfloat";
         };
 
-        config = pkgs.lib.mkIf config.programs.hyprfloat.enable {
+        config = lib.mkIf config.programs.hyprfloat.enable {
           environment.systemPackages = [ self.packages.${pkgs.system}.default ];
           environment.variables.GDK_PIXBUF_MODULE_FILE = 
             "${pkgs.gdk-pixbuf.out}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
