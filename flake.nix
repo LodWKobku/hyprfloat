@@ -78,6 +78,7 @@
               wrapProgram $out/bin/hyprfloat \
                 --set LUA_PATH "${luaPath}" \
                 --set LUA_CPATH "${luaCPath}" \
+                --prefix PATH : "${lua}/bin" \
                 --prefix GI_TYPELIB_PATH : "${pkgs.lib.makeSearchPath "lib/girepository-1.0" gObjectDeps}" \
                 --prefix LD_LIBRARY_PATH : "${pkgs.lib.makeLibraryPath gObjectDeps}" \
                 --prefix XDG_DATA_DIRS : "${pkgs.gtk3}/share"
