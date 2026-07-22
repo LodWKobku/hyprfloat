@@ -1,5 +1,5 @@
 {
-  description = "Hyprfloat flake with wrapGAppsHook for GObject dependencies";
+  description = "Hyprfloat flake with wrapGAppsHook3 for GObject dependencies";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -45,7 +45,7 @@
             version = "0.1.0";
             src = ./.;
 
-            nativeBuildInputs = [ pkgs.wrapGAppsHook ];
+            nativeBuildInputs = [ pkgs.wrapGAppsHook3 ];
             buildInputs = [ lua luaposix luacjson lualgi ] ++ gObjectDeps;
 
             installPhase = ''
@@ -133,7 +133,7 @@
               luaposix
               luacjson
               lualgi
-              pkgs.wrapGAppsHook
+              pkgs.wrapGAppsHook3
               pkgs.git
               pkgs.gtk3
             ] ++ gObjectDeps;
