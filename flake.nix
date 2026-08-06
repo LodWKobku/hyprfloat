@@ -161,12 +161,25 @@
         }
       );
 
-      nixosModules.default = { config, lib, pkgs, ... }: {
+      nixosModules.default = { config, lib, pkgs, ... }: 
+      let
+        cfg = config.programs.hyprfloat;
+        settingsFormat = pkgs.formats.lua {};
+      in
+      {
         options.programs.hyprfloat = {
           enable = lib.mkEnableOption "Enable hyprfloat";
+          config = lib.mkOption {
+          # Useful types:
+            # types.luaInline
+            type = settingsFormat.type;
+            default = {};
+            example = "TODO";
+            description = "TODO";
+          };
         };
 
-        config = lib.mkIf config.programs.hyprfloat.enable {
+        config = lib.mkIf cfg.enable {
           environment.systemPackages = [ self.packages.${pkgs.system}.default ];
           environment.variables.GDK_PIXBUF_MODULE_FILE = 
             "${pkgs.gdk-pixbuf.out}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
